@@ -2,28 +2,48 @@ import pandas as pd # not yet being used dumbass (belum kepake)
 import pytchat
 import json
 
-# https://www.youtube.com/watch?v=ZLk2NqvCOrw
+# https://www.youtube.com/watch?v=AUE5iHINUIw
 """
     Marapthon live
 """
-video_id = "ZLk2NqvCOrw"
-
+video_id = "AUE5iHINUIw"
 def main():
+    chats = []
     chat = pytchat.create(video_id)
 
     try:
         while chat.is_alive():
-            # TBA
             for c in chat.get().sync_items():
-                # print(f"{c.datetime} [{c.author.name}]- {c.message}")
                 livechat_obj = c.json()
                 live_chat = json.loads(livechat_obj)
                 
                 print(live_chat['datetime'] + " : " + live_chat['author']['name'] + " : " + live_chat['message'])
 
+                # Custom Structures
+                chats.append({
+                    'datetime' : c.datetime,
+                    'label' : '',
+                    'author_name' : c.author.name,
+                    'message' : c.message,
+                    'cleaned_message' : ''
+                })
+
+                 # Stop collecting once we hit 500 rows
+                if len(chats) >= 500:
+                    break
+            
+            if len(chats) >= 500:
+                break
+
+        # Membuat Dataframe pandas
+        df = pd.DataFrame(chats)
+
+        # Convert to csv
+        df.to_csv(f'/Dataset_infer/{video_id}_inferences.csv', index=False)
+        print("Data disimpan ke dir Dataset_infer")
+
     except Exception as error:
         print(f"Error: {error}")
-        # TBA
 
 if __name__ == "__main__":
     print(f"Youtube Inferences dimulai")
@@ -31,5 +51,5 @@ if __name__ == "__main__":
     main()
     exit()
 
-# Belum selesai breeee
+# Maumi bree
 
