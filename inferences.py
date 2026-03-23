@@ -1,12 +1,12 @@
-import pandas as pd # not yet being used dumbass (belum kepake)
+import pandas as pd 
 import pytchat
 import json
 
-# https://www.youtube.com/watch?v=AUE5iHINUIw
+# https://www.youtube.com/watch?v=W3kISE3Zn34
 """
-    Marapthon live
+    Channel Berita live (SindoNews)
 """
-video_id = "AUE5iHINUIw"
+video_id = "W3kISE3Zn34"
 def main():
     chats = []
     chat = pytchat.create(video_id)
@@ -39,8 +39,8 @@ def main():
         df = pd.DataFrame(chats)
 
         # Convert to csv
-        df.to_csv(f'/Dataset_infer/{video_id}_inferences.csv', index=False)
-        print("Data disimpan ke dir Dataset_infer")
+        df.to_csv(f'{video_id}_inferences.csv', index=False)
+        print(f"Data disimpan ke {video_id}_inferences.csv")
 
     except Exception as error:
         print(f"Error: {error}")
@@ -51,5 +51,4 @@ if __name__ == "__main__":
     main()
     exit()
 
-# Maumi bree
-# Iyakah :)
+
