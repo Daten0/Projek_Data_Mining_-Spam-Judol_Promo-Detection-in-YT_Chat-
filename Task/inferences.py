@@ -57,9 +57,9 @@ from TikTokLive import TikTokLiveClient
 from TikTokLive.events import CommentEvent
 
 # --- KONFIGURASI ---
-TIKTOK_USERNAME = "@naurfaa2_" # Ganti dengan username target
+TIKTOK_USERNAME = "@saylviee" # Ganti dengan username target
 OUTPUT_FILE = "infer_live.csv"
-TARGET_DATA = 500  # Target jumlah baris data
+TARGET_DATA = 75  # Target jumlah baris data
 
 # Variabel Global
 data_list = []
